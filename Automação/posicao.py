@@ -1,6 +1,5 @@
-mqmmimport pyautogui as auto
+import pyautogui as auto
 import keyboard
-import time
 import threading
 
 rodar = True
