@@ -8,66 +8,85 @@ rodar = True
 def normal():
     global rodar
     
-    comando = {"atualizar" : (120,75), "entrar" : (957,803), "metamask" : (1806,693), "tesouro" : (954,566), "herois" : (954,923), "work" : (847,398), "fechar" : (1023,337), "voltar" : (405, 232)}
+    comando = {"atualizar" : (120,75), "entrar" : (957,803), "metamask" : (1806,693), "tesouro" : (954,566), "herois" : (954,923), "work" : (849,402), "fechar" : (1023,337), "voltar" : (405, 232)}
+    
+    def esperar(t):
+        t = t
+        while rodar and t:
+            time.sleep(1)
+            t -= 1
     
     def atualizar():
         if rodar:
-            auto.click(comando["atualizar"])
+            auto.moveTo(comando["atualizar"])
+            time.sleep(0.25)
+            auto.click()
             time.sleep(10)
         if rodar:
-            auto.click(comando["entrar"])
+            auto.moveTo(comando["entrar"])
+            time.sleep(0.25)
+            auto.click()
             time.sleep(20)
         if rodar:
-            auto.click(comando["metamask"])
+            auto.moveTo(comando["metamask"])
+            time.sleep(0.25)
+            auto.click()
             tempo = time.localtime()
             t = time.strftime("%H:%M:%S", tempo)
             print("Atualizou: {}".format(t))
-            time.sleep(30)
+            time.sleep(25)
     
     def trabalhar():
         if rodar:
-            auto.click(comando["tesouro"])
-            time.sleep(10)
-        if rodar:
-            auto.click(comando["herois"])
-            time.sleep(10)
-        if rodar:
-            auto.click(comando["herois"])
-            time.sleep(10)
-        if rodar:
-            auto.click(comando["work"])
-            time.sleep(10)
-        if rodar:
-            auto.click(comando["fechar"])
+            auto.moveTo(comando["tesouro"])
+            time.sleep(0.25)
+            auto.click()
             time.sleep(5)
         if rodar:
-            auto.click(comando["fechar"])
+            auto.moveTo(comando["herois"])
+            time.sleep(0.25)
+            auto.click()
+            time.sleep(2)
+            auto.click()
+            time.sleep(10)
+        if rodar:
+            auto.moveTo(comando["work"])
+            time.sleep(0.25)
+            auto.click()
+            time.sleep(10)
+        if rodar:
+            auto.moveTo(comando["fechar"])
+            time.sleep(0.25)
+            auto.click()
+            time.sleep(2)
+            auto.click()
+            time.sleep(1)
+        if rodar:
             tempo = time.localtime()
             t = time.strftime("%H:%M:%S", tempo)
             print("Trabalhar: {}".format(t))
-            time.sleep(5)
-            auto.click(comando["fechar"])
 
     def reorganizar():
         if rodar:
-            print("voltar")
-            auto.click(comando["voltar"])
+            auto.moveTo(comando["voltar"])
+            time.sleep(0.25)
+            auto.click()
+            time.sleep(1)
+        if rodar:
             tempo = time.localtime()
             t = time.strftime("%H:%M:%S", tempo)
-            print("Reorganizar: {}".format(t))
-            time.sleep(5)
-    
+            print("Reorganizar: {}".format(t))    
 
     while rodar:
         atualizar()
         trabalhar()
-        time.sleep(600)
+        esperar(600)
         reorganizar()
         trabalhar()
-        time.sleep(600)
+        esperar(600)
         reorganizar()
         trabalhar()
-        time.sleep(600)
+        esperar(600)
         
 
 
